@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Modern Bio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. RESET & VARIABLE --- */
+        :root {
+            --primary-bg: #0f0c29;
+            --gradient-1: #302b63;
+            --gradient-2: #24243e;
+            --accent: #00d2ff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --hover-bg: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. ANIMATIONS --- */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 3. CONTAINER UTAMA --- */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 2rem;
+            margin: 20px;
+            /* Efek Glassmorphism */
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: center;
+        }
+
+        /* --- 4. PROFILE SECTION --- */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 1rem;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .bio {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .verified {
+            color: #00d2ff;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        /* --- 5. LINKS SECTION --- */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--glass-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0; /* Mulai invisible utk animasi */
+        }
+
+        /* Delay animasi tiap kartu agar muncul bergantian */
+        .link-card:nth-child(1) { animation-delay: 0.1s; }
+        .link-card:nth-child(2) { animation-delay: 0.2s; }
+        .link-card:nth-child(3) { animation-delay: 0.3s; }
+        .link-card:nth-child(4) { animation-delay: 0.4s; }
+        .link-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .link-card:hover {
+            transform: scale(1.02);
+            background: var(--hover-bg);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-icon {
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .link-text {
+            font-weight: 500;
+        }
+
+        .share-icon {
+            opacity: 0;
+            transition: 0.3s;
+            transform: translateX(-10px);
+        }
+
+        .link-card:hover .share-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- 6. SOCIAL FOOTER --- */
+        .socials {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-link:hover {
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- 7. SHARE BUTTON (FLOATING) --- */
+        .floating-share {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+        }
+        
+        .floating-share:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="floating-share" onclick="shareProfile()">
+            <i class="fa-solid fa-share-nodes"></i>
+        </div>
+
+        <header>
+            <img src="" alt="Profile" class="profile-pic">
+            
+            <div class="name">
+                Daven Woody <i class="fa-solid fa-circle-check verified"></i>
+            </div>
+            <p class="bio">Digital Creator | Content Enthusiast<br>Menyediakan & Membantu kamu dalam hal coding.</p>
+        </header>
+
+        <main class="links">
+            
+            <a href="https://wa.me/62881026015087" target="_blank" class="link-card">
+                <div class="link-content">
+                    <div class="link-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <span class="link-text">Chat WhatsApp Saya</span>
+                </div>
+                <div class="share-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </a>
+
+            <a href="https://youtube.com/davenwoodys" target="_blank" class="link-card">
+                <div class="link-content">
+                    <div class="link-icon"><i class="fa-brands fa-youtube"></i></div>
+                    <span class="link-text">Nonton Video Terbaru</span>
+                </div>
+                <div class="share-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </a>
+
+            <a href="https://instagram.com/haiklrky" target="_blank" class="link-card">
+                <div class="link-content">
+                    <div class="link-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <span class="link-text">Follow Instagram</span>
+                </div>
+                <div class="share-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </a>
+
+            <a href="https://davenpro.xyz/my-project" target="_blank" class="link-card">
+                <div class="link-content">
+                    <div class="link-icon"><i class="fa-solid fa-code"></i></div>
+                    <span class="link-text">My Portofolio</span>
+                </div>
+                <div class="share-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </a>
+
+        </main>
+
+        <footer class="socials">
+            <a href="https://x.com/Davenwoodys" class="social-link"><i class="fa-brands fa-x"></i></a>
+            <a href="https://tiktok.com/hklrky" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://github.com/Davenwoodys" class="social-link"><i class="fa-brands fa-github"></i></a>
+            
+        </footer>
+    </div>
+
+    <script>
+        // Fitur Simple Share
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Link Bio Saya',
+                    text: 'Cek link bio keren ini!',
+                    url: window.location.href,
+                })
+                .then(() => console.log('Berhasil share'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                alert('Copy link halaman ini manual ya!');
+            }
+        }
+    </script>
+</body>
+</html>
